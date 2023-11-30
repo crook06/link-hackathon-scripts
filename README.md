@@ -1,1 +1,1 @@
-# link-hackathon-scripts
+# Chainlink-hackathon-files and scripts
