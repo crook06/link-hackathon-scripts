@@ -4,14 +4,14 @@ const { utils } = require("ethers");
 const { signer } = require("../connection");
 const { networks } = require("../networks");
 
-const NETWORK = "polygonMumbai";
+const NETWORK = "ethereumSepolia";
 
 const functionsRouterAddress = networks[NETWORK].functionsRouter;
 const linkTokenAddress = networks[NETWORK].linkToken;
-const consumerAddress = "0x01568F134A64b8c525E468908a3850B6c6A55F54";
-const LINK_AMOUNT = "3.3"
+const consumerAddress = "0x01568F134A64b8c525E468908a3850B6c6A55F54"; // RiskFunctionsConsumer.sol public address - must use sub ID
+const LINK_AMOUNT = "5"
 
-const createAndFundSub = async () => {
+const createAndFundSubRisk = async () => {
   const subscriptionManager = new SubscriptionManager({
     signer,
     linkTokenAddress,
@@ -26,8 +26,8 @@ const createAndFundSub = async () => {
 
   // add consumer to subscription
   const receipt = await subscriptionManager.addConsumer({
-    subscriptionId,
-    consumerAddress,
+    subscriptionId, // 4-digit subsrciption ID
+    consumerAddress, // RiskFunctionsConsumer.sol public address
   });
 
   console.log(
@@ -44,6 +44,6 @@ const createAndFundSub = async () => {
     console.log(`\n Subscription ${subscriptionId} funded with ${LINK_AMOUNT} LINK.`)
 };
 
-createAndFundSub().catch(err => {
+createAndFundSubRisk().catch(err => {
   console.log("Error creating/funding Subscription ", err);
 });
