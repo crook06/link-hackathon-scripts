@@ -7,7 +7,7 @@ import {FunctionsRequest} from "@chainlink/contracts/src/v0.8/functions/dev/v1_0
 /**
  * @title Chainlink Functions example on-demand consumer contract example
  */
-contract FunctionsConsumer is FunctionsClient, ConfirmedOwner {
+contract RiskFunctionsConsumer is FunctionsClient, ConfirmedOwner {
   using FunctionsRequest for FunctionsRequest.Request;
 
   bytes32 public donId; // DON ID for the Functions DON to which the requests are sent
