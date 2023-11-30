@@ -1,15 +1,15 @@
-const { Contract } = require("ethers");
+ const { Contract } = require("ethers");
 const fs = require("fs");
 const path = require("path");
 const { Location } = require("@chainlink/functions-toolkit");
-require("@chainlink/env-enc").config();
+require("@chainlink/env-enc").config(); // env-enc with our secret objects
 // require('dotenv').config()
 
 const { signer } = require("../connection.js");
-const { abi } = require("../contracts/abi/FunctionsConsumer.json");
+const { abi } = require("../contracts/abi/RiskFunctionsConsumer.json"); // our contract is RiskFunctionsConsumer.sol, so  RiskFunctionsConsumer.json
 
-const consumerAddress = "0x01568F134A64b8c525E468908a3850B6c6A55F54";
-const subscriptionId = "718";
+const consumerAddress = "0x01568F134A64b8c525E468908a3850B6c6A55F54"; // deployed RiskFunctionsConsumer.sol public address - we need to change that onr
+const subscriptionId = "718"; // 1761 is our
 const encryptedSecretsRef = "0xa266736c6f744964006776657273696f6e1a65540efa";
 
 const sendRequest = async () => {
@@ -22,8 +22,9 @@ const sendRequest = async () => {
     .readFileSync(path.resolve(__dirname, "../source.js"))
     .toString();
 
-  const prompt = "Describe what a blockchain is in 15 words or less";
-  const args = [prompt];
+  const prompt = "Describe what a blockchain is in 15 words or less"; // change
+  // const tokenContractAddress = "Submit token contract address" 
+  const args = [prompt]; // remove "prompt"and place "tokenContractAddress"
   const callbackGasLimit = 300_000;
 
   console.log("\n Sending the Request....")
