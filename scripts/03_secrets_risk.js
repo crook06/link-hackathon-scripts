@@ -8,7 +8,7 @@ const { networks } = require("../networks.js");
 require("@chainlink/env-enc").config();
 // require('dotenv').config()
 
-const NETWORK = "polygonMumbai";
+const NETWORK = "ethereumSepolia"; //we will use Sepolia
 
 const functionsRouterAddress = networks[NETWORK].functionsRouter;
 const donId = networks[NETWORK].donId;
@@ -22,12 +22,12 @@ const encryptAndUploadSecrets = async () => {
 
   await secretsManager.initialize();
 
-  if (!process.env.GPT_API_KEY) {
-    throw Error("GPT_API_KEY not found in .env.enc file");
+  if (!process.env.API_KEY) { // I delete GPT because we will use API endpoints, and only 1 or 2 with API keys
+    throw Error("API_KEY not found in .env.enc file"); // deleted GPT
   }
 
   const secrets = {
-    apiKey: process.env.GPT_API_KEY,
+    apiKey: process.env.API_KEY, // deleted API key
   };
 
   const encryptedSecretsObj = await secretsManager.encryptSecrets(secrets);
